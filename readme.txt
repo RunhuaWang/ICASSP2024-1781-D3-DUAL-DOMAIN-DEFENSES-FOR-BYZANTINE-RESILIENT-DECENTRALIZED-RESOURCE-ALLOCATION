@@ -1,28 +1,17 @@
-算法：
-鲁棒算法：DGD+AGG(CTM,IOS,SCC), BREDA(CTM)
-非鲁棒算法：DGD, DRA
+Algorithms：
+Resilient algorithms：DGD+AGG(CTM,IOS,SCC), BREDA(CTM)
+Non-resilient algorithms：DGD, DRA
 
-用户数量：100
-诚实用户数量：94       拜占庭用户数量：6
+The number of agents：100
+The number of honest agents：94       The number of Byzantine agents：6
 
-无中心网络拓扑：每个用户有15个邻居 （随机生成的网络拓扑）
+Network：random 
 
-总资源量限制：5000 等价于 用户平均资源量=50 等式约束
+Total resource constraint：5000 
+Local resource constriant：[0,100]
 
-每个用户资源申请量的限制为：[0,100]
+Cost function：a*(agent_resource_quantity-b)^{2}
+a：uniform distribution U[1, 2]
+b：gaussian distribution N[2, 0.6^2]
 
-用户成本函数：a*(agent_resource_quantity-b)^{2}
-a的取值：均匀分布[1,2]
-b的取值：均值为2 方差为0.6^2
-
-拜占庭攻击：拜占庭用户向诚实用户发送虚假的对偶变量（价格）
-
-鲁棒聚合规则参数设置：
-理想过滤方式：每个诚实用户根据其邻居中拜占庭用户数量或权重等信息来设置鲁棒聚合规则的过滤参数
-例如：若用户i的邻居中拜占庭用户数量为3 
-CTM：分别剔除邻居信息中最小和最大的3个，即共剔除6个用户信息
-IOS：剔除3个离当前均值最远的用户信息，即共剔除3个用户信息
-SCC：需要知道拜占庭用户的权重，根据具体的权重来设计clipping的参数，具体的参数设计形式见SCC的论文
-
-非理想的过滤方式：每个诚实用户无法知晓其邻居中拜占庭用户数量或权重等信息，只知道所有诚实用户拜占庭邻居数量的一个上界q
-本实验中q=4
+Byzantine attack：Bzantine agents send false dual variables to honest agents
